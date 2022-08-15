@@ -19,3 +19,7 @@ body {
 .container__square:hover {
   opacity: 0.5;
 }
+
+.rows {
+  display: flex;
+}
