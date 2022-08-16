@@ -5,7 +5,6 @@ import { Test } from "./components/Test";
 
 const [up, down, left, right] = [-3, +3, -1, +1];
 
-
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -23,9 +22,11 @@ function App() {
     { id: 7, moves: [up, right] },
     { id: 8, moves: [up, right, left] },
     { id: 9, moves: [up, left] },
-  ])
-  const [end, setEnd] = React.useState(getRandomInt(1, 10));
-  const [rows, setRows] = React.useState(items);
+  ]);
+  const [start, setStart] = React.useState(getRandomInt(1, 10));
+  const [end, setEnd] = React.useState(start);
+  const rows = [];
+
   return (
     <div className="body">
       <div className="container">
@@ -35,19 +36,16 @@ function App() {
       </div>
       <button
         onClick={(e) => {
-          setRows(1, 10);
-
-
+          setStart(1, 10);
+          for (let i = 0; i < 10; i++) {
+            let possibleMovies = items[start].moves;
+            setEnd(start + Math.floor(Math.random() * possibleMovies.length));
+          }
         }}
       >
-        <div>
-          {items.map((el) => {
-           console.log(el.id)
-          })}
-        </div>
+        <div></div>
         START
       </button>
-      <div>123</div>
     </div>
   );
 }
